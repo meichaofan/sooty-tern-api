@@ -50,7 +50,7 @@ allow_credentials = true
 max_age = 7200
 
 [redis]
-addr = "lv_redis:6379"
+addr = "lz_redis:6379"
 password = ""
 
 [gorm]
@@ -65,6 +65,6 @@ table_prefix = "lz_"
 host = "lz_mysql"
 port= 3306
 user = "root"
-password = "root"
+password = "huanhuan0921"
 db_name = "lvzhou"
 parameters = "charset=utf8mb4&parseTime=True&loc=Local&allowNativePasswords=true"
