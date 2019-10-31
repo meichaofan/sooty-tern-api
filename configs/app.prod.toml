@@ -1,0 +1,70 @@
+run_mode = "debug"
+store = "gorm"
+
+[wechat]
+app_id = "wxdd752224f3423e18"
+app_secret= "da36004e22a8172dbfa95fe28eea81c6"
+
+[log]
+level = 5
+format = "text"
+output = "stdout"
+output_file = "data/ginadmin.log"
+enable_hook = false
+hook = "gorm"
+hook_max_thread = 1
+hook_max_buffer = 512
+
+[log_gorm_hook]
+db_type = "sqlite3"
+max_lifetime = 7200
+max_open_conns = 1
+max_idle_conns = 1
+table = "g_logger"
+
+[http]
+host = "0.0.0.0"
+port = 8080
+shutdown_timeout = 30
+
+[jwt_auth]
+signing_method = "HS512"
+signing_key = "SOOTY-TERN"
+expired = 7200
+store = "redis"
+file_path = "data/jwt_auth.db"
+redis_db = 10
+redis_prefix = "auth_"
+
+[rate_limiter]
+enable = false
+count = 300
+redis_db = 10
+
+[cors]
+enable = false
+allow_origins = ["*"]
+allow_methods = ["GET","POST","PUT","DELETE","PATCH"]
+allow_headers = []
+allow_credentials = true
+max_age = 7200
+
+[redis]
+addr = "192.168.136.130:6379"
+password = ""
+
+[gorm]
+debug = true
+db_type = "mysql"
+max_lifetime = 7200
+max_open_conns = 150
+max_idle_conns = 50
+table_prefix = "lz_"
+
+[mysql]
+host = "192.168.136.130"
+port= 3306
+user = "root"
+password = "root"
+db_name = "lvzhou"
+parameters = "charset=utf8mb4&parseTime=True&loc=Local&allowNativePasswords=true"
