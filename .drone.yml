@@ -1,0 +1,144 @@
+kind: pipeline
+name: sooty-tern-prod
+
+workspace:
+  base: /root
+  path: web/sooty-tern
+
+steps:
+  - name: build
+    image: golang
+    commands:
+      - CGO_ENABLED=0 go build -a -ldflags '-extldflags "-static"' -o sooty-tern cmd/server/main.go 
+    environment:
+      GOPROXY: https://goproxy.io
+      GO111MODULE: on
+      sooty_tern_env: prod
+
+  - name: publish
+    image: plugins/docker
+    settings:
+      registry: https://index.docker.io/v1/
+      repo: meichaofan/sooty-tern
+      dockerfile: ./Dockerfile
+      Username:
+        from_secret: docker_username
+      Password:
+        from_secret: docker_password
+      tags: prod
+      build_args:
+        - sooty_tern_env=prod
+
+  - name: deploy
+    image: appleboy/drone-ssh
+    settings:
+      host:
+        from_secret: ssh_host
+      username:
+        from_secret: ssh_username
+      password:
+        from_secret: ssh_password
+      port:
+        from_secret: ssh_port
+      script:
+        - cd /root/web/sooty-tern
+        - docker-compose pull sooty-tern
+        - docker-compose up -d
+
+trigger:
+  branch:
+    - master
+  event:
+    - pull_request
+
+---
+kind: pipeline
+name: sooty-tern-test
+
+workspace:
+  base: /root
+  path: web/sooty-tern
+
+steps:
+  - name: build
+    image: golang
+    commands:
+      - CGO_ENABLED=0 go build -a -ldflags '-extldflags "-static"' -o sooty-tern cmd/server/main.go
+    environment:
+      GOPROXY: https://goproxy.io
+      GO111MODULE: on
+      sooty_tern_env: test
+
+  - name: publish
+    image: plugins/docker
+    settings:
+      registry: https://index.docker.io/v1/
+      repo: meichaofan/sooty-tern
+      dockerfile: ./Dockerfile
+      Username:
+        from_secret: docker_username
+      Password:
+        from_secret: docker_password
+      tags: test
+      build_args:
+        - sooty_tern_env=test
+
+  - name: deploy
+    image: appleboy/drone-ssh
+    settings:
+      host:
+        from_secret: ssh_host_test
+      username:
+        from_secret: ssh_username_test
+      password:
+        from_secret: ssh_password_test
+      port:
+        from_secret: ssh_port_test
+      script:
+        - cd /root/web/sooty-tern
+        - docker-compose pull sooty-tern
+        - docker-compose up -d
+
+trigger:
+  branch:
+    - test
+  event:
+    - push
+
+---
+kind: pipeline
+name: sooty-tern-dev
+
+workspace:
+  base: /root
+  path: web/sooty-tern
+
+steps:
+  - name: build
+    image: golang
+    commands:
+      - CGO_ENABLED=0 go build -a -ldflags '-extldflags "-static"' -o sooty-tern cmd/server/main.go
+    environment:
+      GOPROXY: https://goproxy.io
+      GO111MODULE: on
+      sooty_tern_env: dev
+
+  - name: publish
+    image: plugins/docker
+    settings:
+      registry: https://index.docker.io/v1/
+      repo: meichaofan/sooty-tern
+      dockerfile: ./Dockerfile
+      Username:
+        from_secret: docker_username
+      Password:
+        from_secret: docker_password
+      tags: dev
+      build_args:
+        - sooty_tern_env=dev
+
+trigger:
+  branch:
+    - dev
+  event:
+    - push
