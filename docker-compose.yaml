@@ -8,7 +8,7 @@ networks:
         - subnet: 172.28.7.0/24
 services:
   sooty-tern:
-    image: meichaofan/sooty-tern:dev
+    image: https://registry.cn-beijing.aliyuncs.com/meichaofan/sooty-tern:dev
     container_name: sooty-tern
     ports:
       - "10080:8080"

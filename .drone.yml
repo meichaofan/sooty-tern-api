@@ -17,7 +17,7 @@ steps:
   - name: publish
     image: plugins/docker
     settings:
-      registry: https://index.docker.io/v1/
+      registry: https://registry.cn-beijing.aliyuncs.com
       repo: meichaofan/sooty-tern
       dockerfile: ./Dockerfile
       Username:
@@ -70,7 +70,7 @@ steps:
   - name: publish
     image: plugins/docker
     settings:
-      registry: https://index.docker.io/v1/
+      registry: https://registry.cn-beijing.aliyuncs.com
       repo: meichaofan/sooty-tern
       dockerfile: ./Dockerfile
       Username:
@@ -93,7 +93,7 @@ steps:
       port:
         from_secret: ssh_port_test
       script:
-        - cd /root/web/sooty-tern
+        - cd /root/sooty-tern
         - docker-compose pull sooty-tern
         - docker-compose up -d
 
@@ -123,7 +123,7 @@ steps:
   - name: publish
     image: plugins/docker
     settings:
-      registry: https://index.docker.io/v1/
+      registry: https://registry.cn-beijing.aliyuncs.com
       repo: meichaofan/sooty-tern
       dockerfile: ./Dockerfile
       Username:
