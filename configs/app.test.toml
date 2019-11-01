@@ -50,7 +50,7 @@ allow_credentials = true
 max_age = 7200
 
 [redis]
-addr = "192.168.136.130:6379"
+addr = "lz_redis:6379"
 password = ""
 
 [gorm]
@@ -62,7 +62,7 @@ max_idle_conns = 50
 table_prefix = "lz_"
 
 [mysql]
-host = "192.168.136.130"
+host = "lz_mysql"
 port= 3306
 user = "root"
 password = "root"

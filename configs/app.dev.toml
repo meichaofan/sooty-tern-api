@@ -8,7 +8,7 @@ app_secret= "da36004e22a8172dbfa95fe28eea81c6"
 [log]
 level = 5
 format = "text"
-output = "output"
+output = "stdout"
 output_file = "logs/api"
 enable_hook = false
 hook = "gorm"
