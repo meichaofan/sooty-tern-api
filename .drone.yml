@@ -41,6 +41,7 @@ steps:
         from_secret: ssh_port
       script:
         - cd /root/web/sooty-tern
+        - docker login --username=15652908216 registry.cn-beijing.aliyuncs.com -p huanhuan0921
         - docker-compose pull sooty-tern
         - docker-compose up -d
 
@@ -94,6 +95,7 @@ steps:
         from_secret: ssh_port_test
       script:
         - cd /root/sooty-tern
+        - docker login --username=15652908216 registry.cn-beijing.aliyuncs.com -p huanhuan0921
         - docker-compose pull sooty-tern
         - docker-compose up -d
 
