@@ -3,11 +3,11 @@ package internal
 import (
 	"context"
 	"fmt"
-	"github.com/medivhzhan/weapp"
 	"sooty-tern/internal/app/errors"
 	"sooty-tern/internal/app/model"
 	"sooty-tern/internal/app/schema"
 	"sooty-tern/pkg/auth"
+	"sooty-tern/pkg/login/mini_prog"
 )
 
 type LoginInfo struct {
@@ -25,13 +25,9 @@ func NewLoginInfo(loginInfoModel model.ILoginInfoModel, auth auth.Auth) *LoginIn
 // auth
 func (l *LoginInfo) Login(ctx context.Context, code string) (*schema.LoginRes, error) {
 	//1.code -> openId 、sessionKey
-/*	result, err := mini_prog.Code2Session(code)
+	result, err := mini_prog.Code2Session(code)
 	if err != nil {
 		return nil, errors.WithStack(err)
-	}*/
-	result := &weapp.LoginResponse{
-		OpenID:     "abcdefff",
-		SessionKey: "wqeswcds12123",
 	}
 	openId := result.OpenID
 	sessionKey := result.SessionKey
