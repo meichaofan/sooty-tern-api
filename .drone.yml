@@ -121,7 +121,6 @@ steps:
     environment:
       GOPROXY: https://goproxy.io
       GO111MODULE: on
-      sooty_tern_env: dev
 
   - name: publish
     image: plugins/docker
@@ -134,8 +133,8 @@ steps:
       Password:
         from_secret: docker_password
       tags: dev
-      build_args:
-        - sooty_tern_env=dev
+      enviroment:
+        - sooty_tern_env: dev
 
 trigger:
   branch:
