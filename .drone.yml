@@ -18,7 +18,7 @@ steps:
     image: plugins/docker
     settings:
       registry: registry.cn-beijing.aliyuncs.com
-      repo: meichaofan/sooty-tern
+      repo: registry.cn-beijing.aliyuncs.com/meichaofan/sooty-tern
       dockerfile: ./Dockerfile
       Username:
         from_secret: docker_username
@@ -71,7 +71,7 @@ steps:
     image: plugins/docker
     settings:
       registry: registry.cn-beijing.aliyuncs.com
-      repo: meichaofan/sooty-tern
+      repo: registry.cn-beijing.aliyuncs.com/meichaofan/sooty-tern
       dockerfile: ./Dockerfile
       Username:
         from_secret: docker_username
@@ -124,7 +124,7 @@ steps:
     image: plugins/docker
     settings:
       registry: registry.cn-beijing.aliyuncs.com
-      repo: meichaofan/sooty-tern
+      repo: registry.cn-beijing.aliyuncs.com/meichaofan/sooty-tern
       dockerfile: ./Dockerfile
       Username:
         from_secret: docker_username
