@@ -4,7 +4,9 @@ COPY sooty-tern /
 
 COPY configs /configs
 
-ENV sooty_tern_env dev
+ARG SOOTY_TERN_ENV
+
+ENV sooty_tern_env $SOOTY_TERN_ENV
 
 WORKDIR /
 

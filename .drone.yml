@@ -133,8 +133,9 @@ steps:
       Password:
         from_secret: docker_password
       tags: dev
-      enviroment:
-        - sooty_tern_env: dev
+      build_args:
+        - SOOTY_TERN_ENV=dev
+
 
 trigger:
   branch:
